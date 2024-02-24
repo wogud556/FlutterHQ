@@ -31,10 +31,18 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   //statelessWidget은 widget을 상속받으므로 build를 구현해야함
-  int counter = 0;
+  List<int> numbers = [];
 
   void onClicked() {
-    counter = counter + 1;
+    setState(() {
+      numbers.add(numbers.length);
+    });
+  }
+
+  void onClicked2() {
+    setState(() {
+      numbers.removeLast();
+    });
   }
 
   @override
@@ -48,14 +56,8 @@ class _AppState extends State<App> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'Click Count',
-                style: TextStyle(fontSize: 30),
-              ),
-              Text(
-                '$counter',
-                style: const TextStyle(fontSize: 30),
-              ),
+              const MyLargeTitle(),
+              for (var n in numbers) Text('$n'),
               IconButton(
                 iconSize: 40,
                 onPressed: onClicked,
@@ -63,10 +65,31 @@ class _AppState extends State<App> {
                   Icons.add_box_rounded,
                 ),
               ),
+              IconButton(
+                iconSize: 40,
+                onPressed: onClicked2,
+                icon: const Icon(
+                  Icons.delete,
+                ),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class MyLargeTitle extends StatelessWidget {
+  const MyLargeTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      'My Large Title',
+      style: TextStyle(fontSize: 30),
     );
   }
 }
