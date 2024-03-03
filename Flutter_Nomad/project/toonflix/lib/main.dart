@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   //statelessWidget은 widget을 상속받으므로 build를 구현해야함
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: HomeScreen(),
     );
   }
